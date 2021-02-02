@@ -31,15 +31,25 @@
 //	-> declare texture coordinate varying
 //	-> assign attribute to varying
 
+// For attributes, the name doesn't matter, location does.
 layout (location = 0) in vec4 aPosition;
+layout (location = 8) in vec2 aTexcoord; // uv
+
+// Unifrom names matter.
+uniform mat4 uMVP; // model-view-projection matrix
 
 flat out int vVertexID;
 flat out int vInstanceID;
+out vec2 vTexcoord;
+
+//varying vec2 vTexcoord; old way don't do
 
 void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
 	gl_Position = aPosition;
+
+	vTexcoord = aTexcoord; // assign texcoord to varying to be read on a per fragment basis
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;

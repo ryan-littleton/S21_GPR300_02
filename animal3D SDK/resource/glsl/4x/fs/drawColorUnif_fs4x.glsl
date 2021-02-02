@@ -24,15 +24,19 @@
 
 #version 450
 
-// ****TO-DO: 
+// ****Done: 
 //	-> declare color uniform
 //		(hint: correct name is used in codebase)
 //	-> assign uniform directly to output
+
+uniform vec4 uColor; // Later we might also use uColor0
 
 layout (location = 0) out vec4 rtFragColor;
 
 void main()
 {
 	// DUMMY OUTPUT: all fragments are OPAQUE RED
-	rtFragColor = vec4(1.0, 0.0, 0.0, 1.0);
+	//rtFragColor = vec4(1.0, 0.0, 0.0, 1.0);
+
+	rtFragColor = uColor; // The framework assigns default values on its own
 }
