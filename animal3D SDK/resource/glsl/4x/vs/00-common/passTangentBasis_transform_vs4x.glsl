@@ -22,6 +22,8 @@
 	Calculate and pass tangent basis.
 */
 
+// Modified by Ryan Littleton
+
 #version 450
 
 // ****TO-DO: 
@@ -37,14 +39,27 @@
 //	-> assign texture coordinate to varying
 
 layout (location = 0) in vec4 aPosition;
+layout (location = 2) in vec4 aNormal; //  Location from line 33
 
 flat out int vVertexID;
 flat out int vInstanceID;
 
+out vec4 vNormal; 
+out vec4 vPosition;
+
+uniform mat4 uMV, uMV_nrm, uP;
+
 void main()
 {
 	// DUMMY OUTPUT: directly assign input position to output position
-	gl_Position = aPosition;
+	//gl_Position = aPosition;
+
+	//vPosition = aPosition; // object space
+	//vNormal = aNormal; // object space
+	vPosition = uMV * aPosition; // camera space
+	vNormal = uMV_nrm * aNormal; // camera space, make sure to use nrm version
+
+	gl_Position = uP * vPosition; // clip space, position is the only thing that has to be clip
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;

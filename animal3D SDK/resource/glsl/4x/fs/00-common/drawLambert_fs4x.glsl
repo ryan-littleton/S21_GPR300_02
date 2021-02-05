@@ -22,6 +22,8 @@
 	Output Lambertian shading.
 */
 
+// Modified by Ryan Littleton
+
 #version 450
 
 // ****TO-DO: 
@@ -37,8 +39,17 @@
 
 layout (location = 0) out vec4 rtFragColor;
 
+in vec4 vNormal;
+in vec4 vPosition;
+
+uniform vec4 = uLightPos; // Needs to be made in source code, shaderProgram.h, either in world or camera space
+
 void main()
 {
 	// DUMMY OUTPUT: all fragments are OPAQUE LIME
-	rtFragColor = vec4(0.5, 1.0, 0.0, 1.0);
+	//rtFragColor = vec4(0.5, 1.0, 0.0, 1.0);
+
+	vec4 N = normalize(vNormal);
+	vec4 L = normalize(uLightPos - vPosition); // Vector from point on surface to light source. normalized
+	float kd = dot(N, L); //input needs to be normalized
 }
