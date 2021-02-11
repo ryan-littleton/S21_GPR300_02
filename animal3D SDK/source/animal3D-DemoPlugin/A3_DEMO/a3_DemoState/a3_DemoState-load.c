@@ -28,6 +28,8 @@
 	****************************************************
 */
 
+// Modified by Ryan Littleton
+
 #include "../_a3_demo_utilities/a3_DemoMacros.h"
 
 
@@ -103,7 +105,7 @@ a3real4x4r a3demo_setAtlasTransform_internal(a3real4x4p m_out,
 // initialize dummy drawable
 inline void a3demo_initDummyDrawable_internal(a3_DemoState *demoState)
 {
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment
 	// dummy drawable for point drawing: copy any of the existing ones, 
 	//	set vertex count to 1 and primitive to points (0x0000)
@@ -301,7 +303,7 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	for (i = 0; i < loadedModelsCount; ++i)
 		sharedIndexStorage += a3indexFormatGetStorageSpaceRequired(sceneCommonIndexFormat, loadedModelsData[i].numIndices);
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment buffer creation
 	// create shared buffer
 	vbo_ibo = demoState->vbo_staticSceneObjectDrawBuffer;
@@ -309,7 +311,7 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	sharedVertexStorage = 0;
 
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment vertex array and drawable initialization for position/color format descriptor
 	// create vertex formats and drawables
 	// axes: position and color
@@ -318,7 +320,7 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	currentDrawable = demoState->draw_axes;
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, displayShapesData + 0, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment vertex array and drawable initialization for position-only format descriptor
 	// grid: position attribute only
 	// overlay objects are also just position
@@ -346,7 +348,7 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 5, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 	//... Finish rest of procedural shapes
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> implement the remaining vertex array format from scratch
 	//		-> the teapot is the only drawable that uses it; use the above examples to guide you
 	vao = demoState->vao_tangentbasis_texcoord;
@@ -501,7 +503,7 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 	//	- create program object
 	//	- attach shader objects
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment base program setup
 	// base programs: 
 	// transform-only program
@@ -548,17 +550,20 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 	// ****TO-DO: 
 	//	-> set up missing shader programs, using hints above: 
 	//		-> texturing, Lambert and Phong
-/*	// 00-common programs: 
+	// 00-common programs: 
 	// texturing
 	currentDemoProg = demoState->prog_drawTexture;
+	a3shaderProgramCreate(currentDemoProg->program, "prog:draw-tex");
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passTexcoord_transform_vs->shader);
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawTexture_fs->shader);
 	//...
 	// Lambert
 	//...
 	// Phong
-	//...*/
+	//...
 
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment program linking and validation
 	// activate a primitive for validation
 	// makes sure the specified geometry can draw using programs
@@ -587,7 +592,7 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 	}
 
 
-	// ****TO-DO: 
+	// ****DONE 
 	//	-> uncomment uniform setup and default value assignment
 	// prepare uniforms algorithmically instead of manually for all programs
 	// get uniform and uniform block locations and set default values for all 
@@ -664,7 +669,7 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 // utility to load textures
 void a3demo_loadTextures(a3_DemoState* demoState)
 {	
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment texture loading
 	// indexing
 	a3_Texture* tex;
@@ -709,7 +714,7 @@ void a3demo_loadTextures(a3_DemoState* demoState)
 		a3textureDefaultSettings();
 	}
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment texture configuration
 	// change settings on a per-texture or per-type basis
 	tex = demoState->texture;
@@ -757,7 +762,7 @@ inline void a3_refreshDrawable_internal(a3_VertexDrawable *drawable, a3_VertexAr
 //	...or just set new function pointers!
 void a3demo_loadValidate(a3_DemoState* demoState)
 {
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment
 	a3_BufferObject* currentBuff = demoState->drawDataBuffer,
 		* const endBuff = currentBuff + demoStateMaxCount_drawDataBuffer;
