@@ -51,13 +51,13 @@ out vec4 vTexcoord_atlas;
 void main()
 {
 
-	// Texcoord Pipeline
+	// Texcoord Pipeline, atlas from last sem projects
 	mat4 atlasMat = mat4(1.0, 0.0, 0.0, 0.0, // Change first value of this row to scale
 						 0.0, 1.0, 0.0, 0.0, // Change second value of this row to scale
 						 0.0, 0.0, 1.0, 0.0,
 						 0.0, 0.0, 0.0, 1.0); // Change left two of this row to offset
 	vec4 vTexcoord_atlas = atlasMat * aTexcoord;
-	//vTexcoord = aTexcoord;
+	//vTexcoord = aTexcoord; // for testing purposes, not used in final
 	vTexcoord = vTexcoord_atlas; // assign texcoord to varying to be read on a per fragment basis
 
 
