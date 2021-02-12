@@ -329,7 +329,7 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	currentDrawable = demoState->draw_grid;
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, displayShapesData + 1, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 
-	// ****TO-DO: 
+	// ****DONE: 
 	//	-> uncomment vertex array initialization for position/normal/texcoord format descriptor 
 	//		and first couple drawables using that format
 	//	-> time to take the wheel: implement the rest of the procedural shape drawables
@@ -344,8 +344,14 @@ void a3demo_loadGeometry(a3_DemoState *demoState)
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 1, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 	currentDrawable = demoState->draw_unit_sphere;
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 2, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
+	currentDrawable = demoState->draw_unit_cylinder;
+	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 3, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
+	currentDrawable = demoState->draw_unit_capsule;
+	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 4, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 	currentDrawable = demoState->draw_unit_torus;
 	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 5, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
+	currentDrawable = demoState->draw_unit_cone;
+	sharedVertexStorage += a3geometryGenerateDrawable(currentDrawable, proceduralShapesData + 6, vao, vbo_ibo, sceneCommonIndexFormat, 0, 0);
 	//... Finish rest of procedural shapes
 
 	// ****DONE: 
@@ -650,7 +656,7 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 
 		// ****TO-DO: 
 		//	-> set lighting uniform and block handles and defaults
-
+		a3demo_setUniformDefaultVec4(currentDemoProg, uLightPos, a3vec4_one.v);
 	}
 
 
