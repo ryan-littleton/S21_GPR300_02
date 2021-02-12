@@ -36,23 +36,33 @@
 
 // For attributes, the name doesn't matter, location does.
 layout (location = 0) in vec4 aPosition;
-layout (location = 8) in vec2 aTexcoord; // uv
+layout (location = 8) in vec4 aTexcoord; // uv
 
 // Unifrom names matter.
 uniform mat4 uMVP; // model-view-projection matrix
 
 flat out int vVertexID;
 flat out int vInstanceID;
-out vec2 vTexcoord;
+out vec4 vTexcoord;
+out vec4 vTexcoord_atlas;
 
 //varying vec2 vTexcoord; old way don't do
 
 void main()
 {
-	// DUMMY OUTPUT: directly assign input position to output position
-	gl_Position = aPosition;
 
-	vTexcoord = aTexcoord; // assign texcoord to varying to be read on a per fragment basis
+	// Texcoord Pipeline
+	mat4 atlasMat = mat4(1.0, 0.0, 0.0, 0.0, // Change first value of this row to scale
+						 0.0, 1.0, 0.0, 0.0, // Change second value of this row to scale
+						 0.0, 0.0, 1.0, 0.0,
+						 0.0, 0.0, 0.0, 1.0); // Change left two of this row to offset
+	vec4 vTexcoord_atlas = atlasMat * aTexcoord;
+	vTexcoord = vTexcoord_atlas; // assign texcoord to varying to be read on a per fragment basis
+
+
+	// DUMMY OUTPUT: directly assign input position to output position
+	gl_Position = uMVP * aPosition;
+
 
 	vVertexID = gl_VertexID;
 	vInstanceID = gl_InstanceID;

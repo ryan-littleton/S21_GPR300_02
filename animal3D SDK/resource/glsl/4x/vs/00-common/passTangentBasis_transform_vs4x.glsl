@@ -40,12 +40,14 @@
 
 layout (location = 0) in vec4 aPosition;
 layout (location = 2) in vec4 aNormal; //  Location from line 33
+layout (location = 8) in vec2 aTexcoord; // uv
 
 flat out int vVertexID;
 flat out int vInstanceID;
 
 out vec4 vNormal; 
 out vec4 vPosition;
+out vec2 vTexcoord;
 
 uniform mat4 uMV, uMV_nrm, uP;
 
@@ -58,6 +60,8 @@ void main()
 	//vNormal = aNormal; // object space
 	vPosition = uMV * aPosition; // camera space
 	vNormal = uMV_nrm * aNormal; // camera space, make sure to use nrm version
+
+	vTexcoord = aTexcoord;
 
 	gl_Position = uP * vPosition; // clip space, position is the only thing that has to be clip
 

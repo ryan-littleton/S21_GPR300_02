@@ -49,7 +49,7 @@ void main()
 	// DUMMY OUTPUT: all fragments are OPAQUE LIME
 	rtFragColor = vec4(0.5, 1.0, 0.0, 1.0);
 
-	vec4 N = normalize(vNormal);
+	//vec4 N = normalize(vNormal);
 	//vec4 L = normalize(uLightPos - vPosition); // Vector from point on surface to light source. normalized
 	//float kd = dot(N, L); //input needs to be normalized
 }

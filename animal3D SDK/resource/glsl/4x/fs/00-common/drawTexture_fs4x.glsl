@@ -37,12 +37,12 @@ layout (location = 0) out vec4 rtFragColor;
 
 uniform sampler2D uTex_dm; // Find name in codebase
 
-in vec2 vTexcoord;
+in vec4 vTexcoord;
 
 void main()
 {
 	// DUMMY OUTPUT: all fragments are OPAQUE YELLOW
 	//rtFragColor = vec4(1.0, 1.0, 0.0, 1.0);
-	//rtFragColor = texture(uTex_dm, vTexcoord);
-	rtFragColor = vec4(vTexcoord, 0.0, 1.0);
+	rtFragColor = texture(uTex_dm, vTexcoord.xy);
+	//rtFragColor = vec4(vTexcoord, 0.0, 1.0);
 }
