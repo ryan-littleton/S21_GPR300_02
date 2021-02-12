@@ -26,6 +26,8 @@
 	********************************************
 */
 
+// Modified by Ryan Littleton
+
 //-----------------------------------------------------------------------------
 
 #include "../a3_DemoMode0_Intro.h"
@@ -263,6 +265,7 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 			// ****TO-DO: 
 			//	-> send "normal matrix": the inverse-transpose of the model-view matrix
 			//		(hint: the correct uniform location is in the shader header)
+			a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMV_nrm, 1, currentSceneObject->modelMatrixStackPtr->modelViewMatInverseTranspose.mm);
 
 		case intro_renderModeTexture:
 			// activate diffuse map, fall through to solid color
@@ -274,6 +277,9 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 			// ****TO-DO: 
 			//	-> send model-view-projection matrix
 			//	-> send solid color (not a matrix)
+			a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMVP, 1, currentSceneObject->modelMatrixStackPtr->modelViewProjectionMat.mm);
+			// This is copied from the uColor0 send, I'm not entirely sure how to parse the color stuff here
+			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, hueCount, rgba4->v);
 
 			break;
 		}
