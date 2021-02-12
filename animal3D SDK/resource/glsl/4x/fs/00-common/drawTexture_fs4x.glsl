@@ -22,6 +22,8 @@
 	Output texture blended with color.
 */
 
+// Modified by Ryan Littleton
+
 #version 450
 
 // ****TO-DO: 

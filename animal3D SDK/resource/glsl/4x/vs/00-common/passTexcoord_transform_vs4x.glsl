@@ -22,6 +22,9 @@
 	Calculate final position and pass atlas texture coordinate.
 */
 
+// Modified by Ryan Littleton
+
+
 #version 450
 
 // ****TO-DO: 
