@@ -237,7 +237,10 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 
 	// ****TO-DO: 
 	//	-> send lighting uniforms and bind blocks where appropriate
-	//a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uLightPos, 1 , rgba4->v);
+	// Really confused as to where to find what data I should be sending
+	//a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uLightPos, 1, (0,0,0,0));
+	//a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uLightColor, 1, rgba4[14].v);
+	//a3shaderUniformSendFloat(a3unif_single, currentDemoProgram->uLightRadius, 1, 1);
 
 	// select pipeline algorithm
 	glDisable(GL_BLEND);
@@ -275,12 +278,12 @@ void a3intro_render(a3_DemoState const* demoState, a3_DemoMode0_Intro const* dem
 
 		case intro_renderModeSolid:
 			// send general matrix and color, end
-			// ****TO-DO: 
+			// ****Done: 
 			//	-> send model-view-projection matrix
 			//	-> send solid color (not a matrix)
 			a3shaderUniformSendFloatMat(a3unif_mat4, 0, currentDemoProgram->uMVP, 1, currentSceneObject->modelMatrixStackPtr->modelViewProjectionMat.mm);
-			// This is copied from the uColor0 send, I'm not entirely sure how to parse the color stuff here
-			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, hueCount, rgba4[i].v);
+			// sets different colors for objects
+			a3shaderUniformSendFloat(a3unif_vec4, currentDemoProgram->uColor, 1, rgba4[i].v);
 
 			break;
 		}

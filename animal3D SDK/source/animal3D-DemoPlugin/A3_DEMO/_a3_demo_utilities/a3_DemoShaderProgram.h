@@ -101,7 +101,9 @@ extern "C"
 		struct {
 			a3i32
 				// lighting uniform handles
-				uLightPos;	// light pos
+				uLightPos,		// light position
+				uLightColor,	// light color
+				uLightRadius;		// light radii
 		};
 	};
 
