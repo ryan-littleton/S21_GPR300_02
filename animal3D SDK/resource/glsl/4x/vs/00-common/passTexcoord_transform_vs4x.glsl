@@ -56,7 +56,7 @@ void main()
 						 0.0, 1.0, 0.0, 0.0, // Change second value of this row to scale
 						 0.0, 0.0, 1.0, 0.0,
 						 0.0, 0.0, 0.0, 1.0); // Change left two of this row to offset
-	//vec4 vTexcoord_atlas = atlasMat * aTexcoord;
+	vec4 vTexcoord_atlas = atlasMat * aTexcoord;
 	//vTexcoord = aTexcoord;
 	vTexcoord = vTexcoord_atlas; // assign texcoord to varying to be read on a per fragment basis
 
