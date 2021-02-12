@@ -559,13 +559,21 @@ void a3demo_loadShaders(a3_DemoState *demoState)
 	// 00-common programs: 
 	// texturing
 	currentDemoProg = demoState->prog_drawTexture;
-	a3shaderProgramCreate(currentDemoProg->program, "prog:draw-tex");
-	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passTexcoord_transform_vs->shader);
+	a3shaderProgramCreate(currentDemoProg->program, "prog:draw-texture");
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passthru_transform_vs->shader);
 	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawTexture_fs->shader);
 	//...
 	// Lambert
+	currentDemoProg = demoState->prog_drawLambert;
+	a3shaderProgramCreate(currentDemoProg->program, "prog:draw-lambert");
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passthru_transform_vs->shader);
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawLambert_fs->shader);
 	//...
 	// Phong
+	currentDemoProg = demoState->prog_drawPhong;
+	a3shaderProgramCreate(currentDemoProg->program, "prog:draw-phong");
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.passthru_transform_vs->shader);
+	a3shaderProgramAttachShader(currentDemoProg->program, shaderList.drawPhong_fs->shader);
 	//...
 
 
